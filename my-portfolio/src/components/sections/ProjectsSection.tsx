@@ -1,9 +1,8 @@
 import React from "react";
-import { Briefcase } from "lucide-react";
-import { AnimatedSection } from "../shared/AnimatedSection";
 import HeaderSection from "../text/HeaderSection";
 import ProjectCard from "../cards/ProjectCard";
 import { ScrollButton } from "../buttons/ScrollButton";
+import { Animation } from "../shared/Animation";
 
 interface ProjectsSectionProps {
   onScrollClick: () => void;
@@ -35,7 +34,7 @@ export const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionP
       },
       {
         title: "Asset Tracker",
-        description: "Console application for managing and tracking assets, converts dollar price of assets into local currency depending on location using https://www.exchangerate-api.com/",
+        description: "Console application for managing and tracking assets, converts price of assets into local currency using https://www.exchangerate-api.com/",
         technologies: ["C#", ".NET"],
         githubUrl: "https://github.com/EHasselgren/AssetTracker",
         imageUrl: "/images/asset-tracker.png"
@@ -43,24 +42,35 @@ export const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionP
     ];
 
     return (
-      <section ref={ref} className="min-h-screen flex flex-col items-center justify-center bg-white">
-        <AnimatedSection className="max-w-6xl w-full flex flex-col items-center px-4">
-          <HeaderSection title="Projects" Icon={Briefcase} />
+      <section ref={ref} className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-200">
+        <Animation >
+        <div className="max-w-6xl w-full flex flex-col items-center px-4">
+          <Animation >
+            <HeaderSection title="Projects"/>
+          </Animation>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             {projects.map((project, index) => (
+              <Animation  oneByOne={{
+                index,
+                totalItems: 4,
+                delayBetween: 350
+              }}>
               <ProjectCard
                 key={index}
                 {...project}
+                delay={1200 + index * 200}
               />
+              </Animation>
             ))}
           </div>
-          <ScrollButton onScrollClick={onScrollClick} />
-        </AnimatedSection>
+          <Animation>
+            <ScrollButton onScrollClick={onScrollClick} />
+          </Animation>
+        </div>
+        </Animation>
       </section>
     );
   }
 );
-
-ProjectsSection.displayName = 'ProjectsSection';
 
 export default ProjectsSection;

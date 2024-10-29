@@ -1,13 +1,27 @@
 import React from "react";
-import { Code } from "lucide-react";
-import { AnimatedSection } from "../shared/AnimatedSection";
 import HeaderSection from "../text/HeaderSection";
 import { SkillCard } from "../cards/SkillCard";
 import { ScrollButton } from "../buttons/ScrollButton";
+import { Animation } from "../shared/Animation";
 
 interface SkillsSectionProps {
   onScrollClick: () => void;
 }
+
+const skillsMap = new Map([
+  [
+    "Frontend",
+    ["React", "TypeScript", "Tailwind", "Bootstrap", "Angular", "JavaScript"],
+  ],
+  [
+    "Backend",
+    ["Node.js", "MySQL", "C#", ".net", "asp.net", "Restfull apis", "Swagger"],
+  ],
+  [
+    "Other",
+    ["Figma", "Github", "Jira", "UX", "CSM", "UI", "Project Management"],
+  ],
+]);
 
 export const SkillsSection = React.forwardRef<
   HTMLDivElement,
@@ -16,32 +30,28 @@ export const SkillsSection = React.forwardRef<
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-b from-blue-50 to-white"
+      className="min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-b from-blue-200 to-white"
     >
-      <AnimatedSection className="max-w-3xl w-full flex flex-col items-center">
-        <HeaderSection title="Technical Skills" Icon={Code} />
+      <Animation className="max-w-3xl w-full flex flex-col items-center">
+        <HeaderSection title="Technical Skills" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-          <SkillCard
-            title="Frontend"
-            skills={[
-              "React",
-              "TypeScript",
-              "Tailwind",
-              "Bootstrap",
-              "Angular", "JavaScript"
-            ]}
-          />
-          <SkillCard
-            title="Backend"
-            skills={["Node.js", "MySQL", "C#", '.net', "asp.net", "Restfull apis", "Swagger"]}
-          />
-          <SkillCard
-            title="Other"
-            skills={["Figma", "Github", "Jira", "UX", "CSM", "UI", "Project Management"]}
-          />
+          {Array.from(skillsMap).map(([category, skills], index) => (
+            <Animation
+              key={category}
+              oneByOne={{
+                index,
+                totalItems: skillsMap.size,
+                delayBetween: 300,
+              }}
+            >
+              <SkillCard title={category} skills={skills} delay={800} />
+            </Animation>
+          ))}
         </div>
         <ScrollButton onScrollClick={onScrollClick} />
-      </AnimatedSection>
+      </Animation>
     </section>
   );
 });
+
+export default SkillsSection;

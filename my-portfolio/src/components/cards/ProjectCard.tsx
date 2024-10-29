@@ -1,5 +1,9 @@
 import React from 'react';
-import { Github } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
+
+import { Animation } from '../shared/Animation';
 
 interface ProjectCardProps {
   title: string;
@@ -7,6 +11,7 @@ interface ProjectCardProps {
   technologies: string[];
   imageUrl: string;
   githubUrl: string;
+  delay: number;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -15,41 +20,48 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   technologies,
   imageUrl,
   githubUrl,
+  delay
 }) => {
   return (
-    <div className="group p-6 bg-gradient-to-br from-blue-50 to-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100">
-      <div className="relative w-full h-48 mb-4 overflow-hidden rounded-lg">
+    <div className="group p-4 bg-gradient-to-br from-blue-50 to-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform">
+      <div className="relative w-full h-40 mb-3 overflow-hidden rounded-lg">
         <img
-          src={imageUrl || "/api/placeholder/400/320"}
+          src={imageUrl}
           alt={title}
           className="w-full h-full object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0 hover:scale-110"
         />
       </div>
-      
-      <h3 className="text-xl font-['Space_Grotesk'] text-center font-semibold mb-4 text-slate-600">
+      <h3 className="text-lg font-['Poppins'] text-center font-semibold mb-2 text-black">
         {title}
       </h3>
-      <p className="text-slate-600 mb-4 text-center">
+      <p className="text-black mb-3 font-['Poppins'] text-center text-md line-clamp-2">
         {description}
       </p>
-      <div className="flex flex-wrap gap-1 justify-center mb-4">
+      <div className="flex flex-wrap gap-1 justify-center mb-3">
         {technologies.map((tech, index) => (
-          <span
+          <Animation
             key={index}
-            className="px-3 py-1 bg-blue-400 text-white rounded-full text-sm"
+            delay={delay}
+            oneByOne={{
+              index,
+              totalItems: technologies.length,
+              delayBetween: 100
+            }}
           >
-            {tech}
-          </span>
+          <span className="px-3 py-1 bg-blue-400 text-white rounded-full text-sm flex items-center justify-center min-w-[48px]">
+          {tech}
+            </span>
+          </Animation>
         ))}
       </div>
-      <div className="flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="flex justify-center scale-0 group-hover:scale-100 transition-all duration-300 origin-center">
         <a
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
+          className="animate-pulse w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-400 to-cyan-600 hover:from-purple-500 hover:to-cyan-700 text-white shadow-md hover:shadow-lg"
         >
-          <Github size={24} className="text-slate-600" />
+          <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
         </a>
       </div>
     </div>
