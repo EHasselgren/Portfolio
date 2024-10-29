@@ -23,7 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   delay
 }) => {
   return (
-<div className="group p-4 bg-gradient-to-br from-blue-50 to-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform">
+<div className="group p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform">
   <div className="relative w-full h-40 mb-3 overflow-hidden rounded-lg">
     <img
       src={imageUrl}
