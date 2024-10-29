@@ -37,7 +37,7 @@ const SocialLinks = () => {
   };
 
   return (
-    <div className="flex gap-4 items-center justify-center w-full">
+    <div className="flex gap-4 items-center justify-center w-full pt-3">
       {socialLinks.map((link, index) => (
         <Animation
           key={index}

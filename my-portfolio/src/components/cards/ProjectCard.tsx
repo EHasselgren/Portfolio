@@ -23,15 +23,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   delay
 }) => {
   return (
-    <div className="group p-4 bg-gradient-to-br from-blue-50 to-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform">
-      <div className="relative w-full h-40 mb-3 overflow-hidden rounded-lg">
-        <img
-          src={imageUrl}
-          alt={title}
-          className="w-full h-full object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0 hover:scale-110"
-        />
-      </div>
-      <h3 className="text-lg font-['Poppins'] text-center font-semibold mb-2 text-black">
+<div className="group p-4 bg-gradient-to-br from-blue-50 to-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform">
+  <div className="relative w-full h-40 mb-3 overflow-hidden rounded-lg">
+    <img
+      src={imageUrl}
+      alt={title}
+      className="w-full h-full object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110"
+    />
+  </div>
+      <h3 className="text-lg font-['Poppins'] text-center font-semibold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
         {title}
       </h3>
       <p className="text-black mb-3 font-['Poppins'] text-center text-md line-clamp-2">
@@ -48,7 +48,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               delayBetween: 100
             }}
           >
-          <span className="px-3 py-1 bg-blue-400 text-white rounded-full text-sm flex items-center justify-center min-w-[48px]">
+          <span className="px-3 py-1 bg-gradient-to-br from-purple-400 to-blue-500 text-white rounded-full text-sm flex items-center justify-center min-w-[48px]">
           {tech}
             </span>
           </Animation>
