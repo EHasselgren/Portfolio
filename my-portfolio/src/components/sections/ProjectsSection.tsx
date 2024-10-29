@@ -34,7 +34,7 @@ export const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionP
       },
       {
         title: "Asset Tracker",
-        description: "Console application for managing and tracking assets, converts price of assets into local currency using https://www.exchangerate-api.com/",
+        description: "Console application for managing assets, converts prices into local currency using https://www.exchangerate-api.com/",
         technologies: ["C#", ".NET"],
         githubUrl: "https://github.com/EHasselgren/AssetTracker",
         imageUrl: "/images/asset-tracker.png"
