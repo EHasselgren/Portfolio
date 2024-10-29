@@ -22,7 +22,7 @@ export const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionP
       {
         title: "Money Tracker",
         description: "Terminal-based application for tracking personal finances, has advanced filtering and is styled using spectre.console",
-        technologies: ["C#", ".NET"],
+        technologies: ["C#", ".NET", "spectre.console"],
         githubUrl: "https://github.com/EHasselgren/MoneyTracker",
         imageUrl: "/images/Moneytracker.png"
       },
