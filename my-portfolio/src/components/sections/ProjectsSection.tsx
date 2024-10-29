@@ -50,13 +50,13 @@ export const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionP
           </Animation>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             {projects.map((project, index) => (
-              <Animation  oneByOne={{
+              <Animation  key={index} oneByOne={{
                 index,
                 totalItems: 4,
                 delayBetween: 350
               }}>
               <ProjectCard
-                key={index}
+               
                 {...project}
                 delay={1200 + index * 200}
               />
