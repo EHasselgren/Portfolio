@@ -3,7 +3,7 @@ import { animated } from "react-spring";
 import { Animation } from "../shared/Animation";
 import { SkillCardProps, Skill } from "../../types/types";
 import { useSkillCardAnimation } from "../../hooks/useSkillCardAnimation";
-import { BurstSkill } from "../shared/BurstSkill";
+import { BurstSkill } from "./BurstSkill";
 
 export const SkillCard: React.FC<SkillCardProps> = ({
   title,

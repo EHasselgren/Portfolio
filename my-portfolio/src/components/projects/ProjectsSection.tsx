@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderSection from "../text/HeaderSection";
-import ProjectCard from "../cards/ProjectCard";
+import ProjectCard from "./ProjectCard";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
 

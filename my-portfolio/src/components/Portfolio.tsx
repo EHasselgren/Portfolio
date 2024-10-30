@@ -1,10 +1,10 @@
 import { RefObject, useRef } from "react";
-import { HeroSection } from "./sections/HeroSection";
+import { HeroSection } from "./hero/HeroSection";
 import { AboutSection } from "./about/AboutSection";
-import { SkillsSection } from "./sections/SkillsSection";
-import { ProjectsSection } from "./sections/ProjectsSection";
-import { ContactSection } from "./sections/ContactSection";
-import { BottomSection } from "./sections/BottomSection";
+import { SkillsSection } from "./skills/SkillsSection";
+import { ProjectsSection } from "./projects/ProjectsSection";
+import { ContactSection } from "./contact/ContactSection";
+import { BottomSection } from "./bottom/BottomSection";
 
 const Portfolio = () => {
   const heroRef = useRef<HTMLDivElement>(null);

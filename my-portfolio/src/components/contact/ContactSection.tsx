@@ -2,7 +2,7 @@ import React from "react";
 import HeaderSection from "../text/HeaderSection";
 import AnimatedText from "../text/AnimatedText";
 import { Animation } from "../shared/Animation";
-import SocialLinks from "../links/SocialLinks";
+import SocialLinks from "./SocialLinks";
 
 export const ContactSection = React.forwardRef<HTMLDivElement>((_, ref) => {
   const text = "Interested in working together? Let's connect!";

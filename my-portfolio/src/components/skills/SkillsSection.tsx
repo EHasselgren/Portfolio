@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderSection from "../text/HeaderSection";
-import { SkillCard } from "../cards/SkillCard";
+import { SkillCard } from "./SkillCard";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
 
