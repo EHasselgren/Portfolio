@@ -75,7 +75,7 @@ export const ProjectsSection = React.forwardRef<
               </Animation>
             ))}
           </div>
-          <Animation delay={2600}>
+          <Animation delay={1500}>
             <ScrollButton onScrollClick={onScrollClick} />
           </Animation>
         </div>
