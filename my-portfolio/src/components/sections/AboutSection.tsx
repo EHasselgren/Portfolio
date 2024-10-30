@@ -1,4 +1,6 @@
 import React from 'react';
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import HeaderSection from '../text/HeaderSection';
 import TextSection from '../text/TextSection';
 import { ScrollButton } from '../buttons/ScrollButton';
@@ -25,7 +27,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
           </Animation>
           <Animation delay={300}>
             <div className="my-8">
-              <img
+              <LazyLoadImage
                 src="/images/profile.jpg"
                 alt="Elias Hasselgren"
                 className="w-[15vw] h-[15vw] rounded-full object-cover mx-auto shadow-xl"
@@ -47,7 +49,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
             </a>
           </Animation>
           <Animation delay={900} className="flex justify-center w-full">
-            <ScrollButton onScrollClick={onScrollClick} />
+          <ScrollButton onScrollClick={onScrollClick} />
           </Animation>
         </div>
       </section>
