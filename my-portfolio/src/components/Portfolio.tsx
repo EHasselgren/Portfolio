@@ -1,6 +1,6 @@
 import { RefObject, useRef } from "react";
 import { HeroSection } from "./sections/HeroSection";
-import { AboutSection } from "./sections/AboutSection";
+import { AboutSection } from "./about/AboutSection";
 import { SkillsSection } from "./sections/SkillsSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { ContactSection } from "./sections/ContactSection";

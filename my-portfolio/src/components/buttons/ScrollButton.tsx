@@ -1,7 +1,7 @@
 import React from "react";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useSwishSound from "../../hooks/useSwishSound";
+import { useSwishSound } from "../../hooks/soundHooks";
 
 interface ScrollButtonProps {
   onScrollClick: () => void;
