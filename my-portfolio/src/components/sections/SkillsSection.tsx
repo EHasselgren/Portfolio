@@ -30,7 +30,7 @@ export const SkillsSection = React.forwardRef<
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-b from-blue-200 to-white"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-200 to-white"
     >
       <Animation className="max-w-3xl w-full flex flex-col items-center">
         <HeaderSection title="Technical Skills" />

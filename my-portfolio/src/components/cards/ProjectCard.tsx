@@ -24,18 +24,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <div className="group p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform">
-      <div className="relative w-full h-40 mb-3 overflow-hidden rounded-lg">
+      <div className="relative h-40 mb-3 overflow-hidden rounded-lg">
         <LazyLoadImage
           src={imageUrl}
           alt={title}
           effect="blur"
-          className="w-full h-full object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110"
+          className="object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110"
         />
       </div>
-      <h3 className="text-lg font-['Poppins'] text-center font-semibold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+      <h3 className="text-lg font-['Poppins'] text-center font-semibold mb-1 bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
         {title}
       </h3>
-      <p className="text-black mb-3 font-['Poppins'] text-center text-md line-clamp-2">
+      <p className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text  font-['Poppins'] text-black mb-3  text-center  line-clamp-2">
         {description}
       </p>
       <div className="flex flex-wrap gap-1 justify-center mb-3">

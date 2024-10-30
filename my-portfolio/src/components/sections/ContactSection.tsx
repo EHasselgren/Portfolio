@@ -10,7 +10,7 @@ export const ContactSection = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-b from-blue-200 to-white"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-200 to-white"
     >
       <div className="max-w-3xl text-center">
         <Animation delay={0}>

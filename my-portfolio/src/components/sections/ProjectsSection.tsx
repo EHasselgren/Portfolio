@@ -50,10 +50,10 @@ export const ProjectsSection = React.forwardRef<
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-200"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-blue-200"
     >
       <Animation>
-        <div className="max-w-6xl w-full flex flex-col items-center px-4">
+        <div className="max-w-6xl flex flex-col items-center px-4">
           <Animation>
             <HeaderSection title="Projects" />
           </Animation>

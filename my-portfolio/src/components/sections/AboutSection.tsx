@@ -20,7 +20,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
     return (
       <section
         ref={ref}
-        className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-200"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-blue-200"
       >
         <div className="max-w-3xl text-center">
           <Animation delay={0}>
@@ -38,18 +38,18 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
           <Animation delay={600}>
             <TextSection text={text} />
           </Animation>
-          <Animation delay={750} className="flex justify-center w-full mt-6">
+          <Animation delay={750} className="flex justify-center">
             <a
               href="https://ehasselgren.github.io/CV_project/"
               target="_blank"
               rel="noopener noreferrer"
-              className="animate-pulse px-6 py-3 rounded-full bg-gradient-to-br from-purple-400 to-cyan-600 text-white shadow-md hover:shadow-lg hover:from-purple-500 hover:to-cyan-700 transition-all duration-300 flex items-center gap-2"
+              className="animate-pulse px-4 py-3 rounded-full bg-gradient-to-br from-purple-400 to-cyan-600 text-white shadow-md hover:shadow-lg hover:from-purple-500 hover:to-cyan-700 transition-all duration-300 flex items-center gap-2"
             >
-              <FontAwesomeIcon icon={faFileAlt} className="w-4 h-4" />
+              <FontAwesomeIcon icon={faFileAlt} className="w-5 h-5" />
               View CV
             </a>
           </Animation>
-          <Animation delay={900} className="flex justify-center w-full">
+          <Animation delay={900} className="flex justify-center">
             <ScrollButton onScrollClick={onScrollClick} />
           </Animation>
         </div>

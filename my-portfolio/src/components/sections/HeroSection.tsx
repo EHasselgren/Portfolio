@@ -12,7 +12,7 @@ const text = "Please scroll to explore";
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollClick }) => {
   return (
-    <section className="h-screen flex flex-col items-center justify-center text-center p-4 bg-gradient-to-b from-blue-200 to-white">
+    <section className="h-screen flex items-center justify-center text-center bg-gradient-to-b from-blue-200 to-white">
       <div className="flex flex-col items-center">
         <Animation delay={0}>
           <HeaderSection title="Welcome to my Portfolio!" />
