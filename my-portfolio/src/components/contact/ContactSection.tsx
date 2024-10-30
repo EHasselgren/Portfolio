@@ -14,7 +14,7 @@ export const ContactSection = React.forwardRef<HTMLDivElement>((_, ref) => {
     >
       <div className="max-w-3xl text-center">
         <Animation delay={0}>
-          <HeaderSection title="Get in Touch" />
+          <HeaderSection title="Get in Touch!" />
         </Animation>
         <Animation delay={300}>
           <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl mb-4 font-['Poppins']">
