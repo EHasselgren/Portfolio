@@ -1,6 +1,6 @@
 import React from "react";
 import AnimatedText from "../text/AnimatedText";
-import HeaderSection from "../text/HeaderSection";
+import HeaderText from "../text/HeaderText";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
 
@@ -23,7 +23,7 @@ export const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
       >
         <div className="flex flex-col items-center">
           <Animation delay={0}>
-            <HeaderSection title="Welcome to my Portfolio!" />
+            <HeaderText title="Welcome to my Portfolio!" />
           </Animation>
           <Animation delay={300}>
             <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl font-['Poppins']">

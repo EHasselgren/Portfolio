@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderSection from "../text/HeaderSection";
+import HeaderSection from "../text/HeaderText";
 import AnimatedText from "../text/AnimatedText";
 import { Animation } from "../shared/Animation";
 import SocialLinks from "./SocialLinks";
