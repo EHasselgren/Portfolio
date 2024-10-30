@@ -7,19 +7,28 @@ interface HeaderTextProps {
 
 const HeaderText: React.FC<HeaderTextProps> = ({ title }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [shouldReset, setShouldReset] = useState(false);
   const [ref, inView] = useScrollAnimation();
   const letters = title.split('');
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    setShouldReset(true);
+    setTimeout(() => setShouldReset(false), 50);
+  };
 
   return (
     <div className="py-4">
       <h2
         ref={ref as React.RefObject<HTMLHeadingElement>}
         className="text-5xl font-bold text-center font-['Poppins'] relative group"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
         <div className="relative z-10 flex justify-center items-center">
-          <span className="inline-block bg-gradient-to-r from-purple-600 to-cyan-600 text-transparent bg-clip-text leading-relaxed">
+          <span 
+            className="inline-block bg-gradient-to-r from-purple-600 to-cyan-600 text-transparent bg-clip-text leading-relaxed"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             {letters.map((letter, index) => (
               <span
                 key={index}
@@ -27,8 +36,8 @@ const HeaderText: React.FC<HeaderTextProps> = ({ title }) => {
                   isHovered ? 'transform hover:scale-110 hover:-translate-y-1' : ''
                 }`}
                 style={{
-                  transform: !inView ? 'translateY(20px)' : 'none',
-                  opacity: !inView ? 0 : 1,
+                  transform: (!inView || shouldReset) ? 'translateY(20px)' : 'none',
+                  opacity: (!inView || shouldReset) ? 0 : 1,
                   transitionDelay: `${index * 50}ms`
                 }}
               >
