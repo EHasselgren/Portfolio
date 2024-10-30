@@ -1,5 +1,5 @@
 import React from "react";
-import TextSection from "../text/TextSection";
+import AnimatedText from "../text/AnimatedText";
 import HeaderSection from "../text/HeaderSection";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
@@ -18,7 +18,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollClick }) => {
           <HeaderSection title="Welcome to my Portfolio!" />
         </Animation>
         <Animation delay={300}>
-          <TextSection text={text} />
+        <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl font-['Poppins']">
+          <AnimatedText text={text} />
+          </div>
         </Animation>
         <Animation delay={600}>
           <ScrollButton onScrollClick={onScrollClick} />

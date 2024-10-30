@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderSection from "../text/HeaderSection";
-import TextSection from "../text/TextSection";
+import AnimatedText from "../text/AnimatedText";
 import { Animation } from "../shared/Animation";
 import SocialLinks from "../links/SocialLinks";
 
@@ -17,7 +17,9 @@ export const ContactSection = React.forwardRef<HTMLDivElement>((_, ref) => {
           <HeaderSection title="Get in Touch" />
         </Animation>
         <Animation delay={300}>
-          <TextSection text={text} />
+          <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl mb-4 font-['Poppins']">
+          <AnimatedText text={text} />
+          </div>
         </Animation>
         <Animation delay={600}>
           <SocialLinks />

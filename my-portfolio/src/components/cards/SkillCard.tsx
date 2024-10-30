@@ -30,9 +30,44 @@ export const SkillCard: React.FC<SkillCardProps> = ({
     }))
   );
 
+  // Track whether skills are being regenerated
+  const [isRegenerating, setIsRegenerating] = useState(false);
+
+  // Card entrance and hover animations
+  const [springProps, api] = useSpring(() => ({
+    from: { scale: 0.8, opacity: 0 },
+    to: { scale: 1, opacity: 1 },
+    config: {
+      tension: 300,
+      friction: 10,
+    },
+    delay: delay,
+  }));
+
+  const [hoverProps, hoverApi] = useSpring(() => ({
+    scale: 1,
+    config: {
+      tension: 300,
+      friction: 10,
+    },
+  }));
+
+  const handleHover = (isHovered: boolean) => {
+    hoverApi.start({
+      scale: isHovered ? 1.05 : 1,
+    });
+  };
+
   useEffect(() => {
     const visibleSkills = skills.filter((skill) => skill.isVisible);
     if (visibleSkills.length === 0) {
+      setIsRegenerating(true);
+      // Reset the entrance animation
+      api.start({
+        from: { scale: 0.8, opacity: 0 },
+        to: { scale: 1, opacity: 1 },
+      });
+
       setTimeout(() => {
         setSkills(
           initialSkills.map((skill) => ({
@@ -42,16 +77,17 @@ export const SkillCard: React.FC<SkillCardProps> = ({
             isAnimatingIn: true,
           }))
         );
+        setIsRegenerating(false);
       }, 1000);
     }
-  }, [skills, initialSkills]);
+  }, [skills, initialSkills, api]);
 
   const BurstSkill: React.FC<{ skill: Skill; index: number }> = ({
     skill,
     index,
   }) => {
     const playPop = usePopSound();
-    const [{ scale, opacity }, api] = useSpring(() => ({
+    const [{ scale, opacity }, burstApi] = useSpring(() => ({
       scale: 1,
       opacity: 1,
       config: {
@@ -63,7 +99,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
     const handleClick = () => {
       playPop();
 
-      api.start({
+      burstApi.start({
         to: { scale: 0, opacity: 0 },
       });
 
@@ -114,28 +150,37 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg min-h-[100%] shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 relative">
-      <h3 className="text-2xl font-['Poppins'] text-center font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
+    <animated.div
+      style={{
+        ...springProps,
+        ...hoverProps,
+      }}
+      onMouseEnter={() => handleHover(true)}
+      onMouseLeave={() => handleHover(false)}
+      className="p-4 bg-white rounded-lg min-h-[100%] shadow-md hover:shadow-xl transition-110 duration-300 border border-slate-100 relative group"
+    >
+      <h3 className="text-2xl font-['Poppins'] text-center font-bold mb-2 bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
         {title}
       </h3>
       <div className="flex flex-wrap gap-1 justify-center">
-        {skills.map((skill, index) => (
-          <Animation
-            key={`${skill.text}-${index}-${
-              skill.isAnimatingIn ? "animating" : "static"
-            }`}
-            delay={skill.isAnimatingIn ? delay : 0}
-            oneByOne={{
-              index,
-              totalItems: skills.length,
-              delayBetween: 100,
-            }}
-          >
-            {skill.isVisible && <BurstSkill skill={skill} index={index} />}
-          </Animation>
-        ))}
+        {!isRegenerating &&
+          skills.map((skill, index) => (
+            <Animation
+              key={`${skill.text}-${index}-${
+                skill.isAnimatingIn ? "animating" : "static"
+              }`}
+              delay={skill.isAnimatingIn ? delay : 0}
+              oneByOne={{
+                index,
+                totalItems: skills.length,
+                delayBetween: 100,
+              }}
+            >
+              {skill.isVisible && <BurstSkill skill={skill} index={index} />}
+            </Animation>
+          ))}
       </div>
-    </div>
+    </animated.div>
   );
 };
 

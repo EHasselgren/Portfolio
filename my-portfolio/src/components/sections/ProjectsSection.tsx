@@ -63,11 +63,15 @@ export const ProjectsSection = React.forwardRef<
                 key={index}
                 oneByOne={{
                   index,
-                  totalItems: 4,
+                  totalItems: projects.length,
                   delayBetween: 350,
                 }}
               >
-                <ProjectCard {...project} delay={1200 + index * 200} />
+                <ProjectCard 
+                  {...project} 
+                  delay={1200 + index * 300} 
+                  index={index}
+                />
               </Animation>
             ))}
           </div>
@@ -78,6 +82,5 @@ export const ProjectsSection = React.forwardRef<
       </Animation>
     </section>
   );
-});
-
-export default ProjectsSection;
+}
+);
