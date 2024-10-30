@@ -13,7 +13,7 @@ interface ProjectCardProps {
   imageUrl: string;
   githubUrl: string;
   delay: number;
-  index: number; // Add index prop to know card position
+  index: number;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({

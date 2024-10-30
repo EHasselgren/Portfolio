@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { animated } from "react-spring";
 import { Animation } from "../shared/Animation";
-import { useSpring, animated, to } from "react-spring";
-import usePopSound from "../../hooks/usePopSound";
-
-interface Skill {
-  text: string;
-  isPopping: boolean;
-  isVisible: boolean;
-  isAnimatingIn?: boolean;
-}
-
-interface SkillCardProps {
-  title: string;
-  skills: string[];
-  delay?: number;
-}
+import { SkillCardProps, Skill } from "../../types/types";
+import { useSkillCardAnimation } from "../../hooks/useSkillCardAnimation";
+import { BurstSkill } from "../shared/BurstSkill";
 
 export const SkillCard: React.FC<SkillCardProps> = ({
   title,
@@ -30,39 +19,13 @@ export const SkillCard: React.FC<SkillCardProps> = ({
     }))
   );
 
-  // Track whether skills are being regenerated
   const [isRegenerating, setIsRegenerating] = useState(false);
-
-  // Card entrance and hover animations
-  const [springProps, api] = useSpring(() => ({
-    from: { scale: 0.8, opacity: 0 },
-    to: { scale: 1, opacity: 1 },
-    config: {
-      tension: 300,
-      friction: 10,
-    },
-    delay: delay,
-  }));
-
-  const [hoverProps, hoverApi] = useSpring(() => ({
-    scale: 1,
-    config: {
-      tension: 300,
-      friction: 10,
-    },
-  }));
-
-  const handleHover = (isHovered: boolean) => {
-    hoverApi.start({
-      scale: isHovered ? 1.05 : 1,
-    });
-  };
+  const { springProps, hoverProps, handleHover, api } = useSkillCardAnimation(delay);
 
   useEffect(() => {
     const visibleSkills = skills.filter((skill) => skill.isVisible);
     if (visibleSkills.length === 0) {
       setIsRegenerating(true);
-      // Reset the entrance animation
       api.start({
         from: { scale: 0.8, opacity: 0 },
         to: { scale: 1, opacity: 1 },
@@ -82,71 +45,26 @@ export const SkillCard: React.FC<SkillCardProps> = ({
     }
   }, [skills, initialSkills, api]);
 
-  const BurstSkill: React.FC<{ skill: Skill; index: number }> = ({
-    skill,
-    index,
-  }) => {
-    const playPop = usePopSound();
-    const [{ scale, opacity }, burstApi] = useSpring(() => ({
-      scale: 1,
-      opacity: 1,
-      config: {
-        tension: 300,
-        friction: 10,
-      },
-    }));
+  const handlePop = (index: number) => {
+    setSkills((prevSkills) => {
+      const newSkills = [...prevSkills];
+      newSkills[index] = {
+        ...newSkills[index],
+        isPopping: true,
+      };
+      return newSkills;
+    });
 
-    const handleClick = () => {
-      playPop();
-
-      burstApi.start({
-        to: { scale: 0, opacity: 0 },
-      });
-
+    setTimeout(() => {
       setSkills((prevSkills) => {
         const newSkills = [...prevSkills];
         newSkills[index] = {
           ...newSkills[index],
-          isPopping: true,
+          isVisible: false,
         };
         return newSkills;
       });
-
-      setTimeout(() => {
-        setSkills((prevSkills) => {
-          const newSkills = [...prevSkills];
-          newSkills[index] = {
-            ...newSkills[index],
-            isVisible: false,
-          };
-          return newSkills;
-        });
-      }, 500);
-    };
-
-    return (
-      <div className="relative">
-        <animated.span
-          onClick={handleClick}
-          className={`
-            px-3 py-1 
-            bg-gradient-to-br from-purple-400 to-blue-500
-            text-white rounded-full text-sm
-            flex items-center justify-center
-            min-w-[48px]
-            cursor-pointer
-            hover:scale-110
-          `}
-          style={{
-            opacity,
-            transform: to([scale], (s) => `scale(${s})`),
-            position: "relative",
-          }}
-        >
-          {skill.text}
-        </animated.span>
-      </div>
-    );
+    }, 500);
   };
 
   return (
@@ -176,7 +94,13 @@ export const SkillCard: React.FC<SkillCardProps> = ({
                 delayBetween: 100,
               }}
             >
-              {skill.isVisible && <BurstSkill skill={skill} index={index} />}
+              {skill.isVisible && (
+                <BurstSkill 
+                  skill={skill} 
+                  index={index}
+                  onPop={handlePop}
+                />
+              )}
             </Animation>
           ))}
       </div>

@@ -48,7 +48,9 @@ export const SkillsSection = React.forwardRef<
             </Animation>
           ))}
         </div>
+        <Animation delay={1000}>
         <ScrollButton onScrollClick={onScrollClick} />
+        </Animation>
       </Animation>
     </section>
   );
