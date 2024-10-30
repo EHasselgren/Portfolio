@@ -1,4 +1,4 @@
-import { useSpring } from 'react-spring';
+import { useSpring } from "react-spring";
 
 export const useSkillCardAnimation = (delay?: number) => {
   const [springProps, api] = useSpring(() => ({

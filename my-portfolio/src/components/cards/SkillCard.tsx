@@ -20,7 +20,8 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   );
 
   const [isRegenerating, setIsRegenerating] = useState(false);
-  const { springProps, hoverProps, handleHover, api } = useSkillCardAnimation(delay);
+  const { springProps, hoverProps, handleHover, api } =
+    useSkillCardAnimation(delay);
 
   useEffect(() => {
     const visibleSkills = skills.filter((skill) => skill.isVisible);
@@ -95,11 +96,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
               }}
             >
               {skill.isVisible && (
-                <BurstSkill 
-                  skill={skill} 
-                  index={index}
-                  onPop={handlePop}
-                />
+                <BurstSkill skill={skill} index={index} onPop={handlePop} />
               )}
             </Animation>
           ))}

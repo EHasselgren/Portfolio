@@ -1,7 +1,7 @@
-import React from 'react';
-import { animated, to, useSpring } from 'react-spring';
-import { Skill } from '../../types/types';
-import  usePopSound  from '../../hooks/usePopSound';
+import React from "react";
+import { animated, to, useSpring } from "react-spring";
+import { Skill } from "../../types/types";
+import usePopSound from "../../hooks/usePopSound";
 
 interface BurstSkillProps {
   skill: Skill;
@@ -9,7 +9,11 @@ interface BurstSkillProps {
   onPop: (index: number) => void;
 }
 
-export const BurstSkill: React.FC<BurstSkillProps> = ({ skill, index, onPop }) => {
+export const BurstSkill: React.FC<BurstSkillProps> = ({
+  skill,
+  index,
+  onPop,
+}) => {
   const playPop = usePopSound();
   const [{ scale, opacity }, burstApi] = useSpring(() => ({
     scale: 1,

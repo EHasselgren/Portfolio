@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useScrollAnimation  } from "../shared/useScrollAnimation";
+import { useScrollAnimation } from "../shared/useScrollAnimation";
 import { WORD_DELAY } from "../../utils/animationUtils";
-
 
 interface AnimatedTextProps {
   text: string;
@@ -12,16 +11,15 @@ interface AnimatedTextProps {
 const AnimatedText: React.FC<AnimatedTextProps> = ({
   text,
   delay = 0,
-  onAnimationComplete
+  onAnimationComplete,
 }) => {
   const words = text.split(" ");
   const [visibleWords, setVisibleWords] = useState<number>(0);
   const [shouldStartAnimation, setShouldStartAnimation] = useState(false);
   const [ref, inView] = useScrollAnimation();
-  
+
   useEffect(() => {
     if (inView) {
-      // First wait for the delay before starting the animation
       const startTimer = setTimeout(() => {
         setShouldStartAnimation(true);
       }, delay);
@@ -33,9 +31,9 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   useEffect(() => {
     if (shouldStartAnimation) {
       setVisibleWords(0);
-      
+
       const timer = setInterval(() => {
-        setVisibleWords(prev => {
+        setVisibleWords((prev) => {
           if (prev < words.length) {
             return prev + 1;
           }
@@ -54,7 +52,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   const visibleText = words.slice(0, visibleWords).join(" ");
 
   return (
-    <div 
+    <div
       ref={ref as React.RefObject<HTMLDivElement>}
       className="transition-opacity duration-300"
     >

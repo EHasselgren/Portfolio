@@ -18,7 +18,7 @@ export const ContactSection = React.forwardRef<HTMLDivElement>((_, ref) => {
         </Animation>
         <Animation delay={300}>
           <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl mb-4 font-['Poppins']">
-          <AnimatedText text={text} />
+            <AnimatedText text={text} />
           </div>
         </Animation>
         <Animation delay={600}>

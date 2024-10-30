@@ -67,9 +67,9 @@ export const ProjectsSection = React.forwardRef<
                   delayBetween: 350,
                 }}
               >
-                <ProjectCard 
-                  {...project} 
-                  delay={1200 + index * 300} 
+                <ProjectCard
+                  {...project}
+                  delay={1200 + index * 300}
                   index={index}
                 />
               </Animation>
@@ -82,5 +82,4 @@ export const ProjectsSection = React.forwardRef<
       </Animation>
     </section>
   );
-}
-);
+});
