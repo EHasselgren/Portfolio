@@ -29,7 +29,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
             <div className="my-8">
               <LazyLoadImage
                 src="/images/profile.jpg"
-                alt="Elias Hasselgren"
+                title="Elias Hasselgren"
                 className="w-[15vw] h-[15vw] rounded-full object-cover mx-auto shadow-xl"
               />
             </div>

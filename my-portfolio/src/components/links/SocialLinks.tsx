@@ -20,20 +20,13 @@ const socialLinks: SocialLink[] = [
     url: "https://www.linkedin.com/in/elias-hasselgren/",
     label: "LinkedIn",
   },
-  {
-    icon: faEnvelope,
-    url: "mailto:elias.hasselgren@icloud.com",
-    label: "Email",
-  },
 ];
 
 const SocialLinks = () => {
   const handleClick = (url: string) => {
-    if (url.startsWith("mailto:")) {
-      window.location.href = url;
-    } else {
+   
       window.open(url, "_blank");
-    }
+
   };
 
   return (
