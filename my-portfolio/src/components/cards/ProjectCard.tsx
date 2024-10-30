@@ -25,12 +25,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div className="group p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform">
       <div className="relative w-full h-40 mb-3 overflow-hidden rounded-lg">
-     <LazyLoadImage
-               src={imageUrl}
-               alt={title}
-               effect="blur"
-               className="w-full h-full object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110"
-             />
+        <LazyLoadImage
+          src={imageUrl}
+          alt={title}
+          effect="blur"
+          className="w-full h-full object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110"
+        />
       </div>
       <h3 className="text-lg font-['Poppins'] text-center font-semibold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
         {title}

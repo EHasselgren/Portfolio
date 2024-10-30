@@ -4,7 +4,6 @@ import HeaderSection from "../text/HeaderSection";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
 
-
 interface HeroSectionProps {
   onScrollClick: () => void;
 }

@@ -24,9 +24,7 @@ const socialLinks: SocialLink[] = [
 
 const SocialLinks = () => {
   const handleClick = (url: string) => {
-   
-      window.open(url, "_blank");
-
+    window.open(url, "_blank");
   };
 
   return (

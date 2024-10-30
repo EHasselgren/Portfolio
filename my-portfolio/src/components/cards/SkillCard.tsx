@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Animation } from '../shared/Animation';
-import { useSpring, animated, to } from 'react-spring';
-import usePopSound from '../../hooks/usePopSound';
+import React, { useState, useEffect } from "react";
+import { Animation } from "../shared/Animation";
+import { useSpring, animated, to } from "react-spring";
+import usePopSound from "../../hooks/usePopSound";
 
 interface Skill {
   text: string;
@@ -16,62 +16,72 @@ interface SkillCardProps {
   delay?: number;
 }
 
-export const SkillCard: React.FC<SkillCardProps> = ({ title, skills: initialSkills, delay }) => {
-  const [skills, setSkills] = useState<Skill[]>(initialSkills.map(skill => ({
-    text: skill,
-    isPopping: false,
-    isVisible: true,
-    isAnimatingIn: false
-  })));
-
+export const SkillCard: React.FC<SkillCardProps> = ({
+  title,
+  skills: initialSkills,
+  delay,
+}) => {
+  const [skills, setSkills] = useState<Skill[]>(
+    initialSkills.map((skill) => ({
+      text: skill,
+      isPopping: false,
+      isVisible: true,
+      isAnimatingIn: false,
+    }))
+  );
 
   useEffect(() => {
-    const visibleSkills = skills.filter(skill => skill.isVisible);
+    const visibleSkills = skills.filter((skill) => skill.isVisible);
     if (visibleSkills.length === 0) {
       setTimeout(() => {
-        setSkills(initialSkills.map(skill => ({
-          text: skill,
-          isPopping: false,
-          isVisible: true,
-          isAnimatingIn: true
-        })));
+        setSkills(
+          initialSkills.map((skill) => ({
+            text: skill,
+            isPopping: false,
+            isVisible: true,
+            isAnimatingIn: true,
+          }))
+        );
       }, 1000);
     }
   }, [skills, initialSkills]);
 
-  const BurstSkill: React.FC<{ skill: Skill; index: number }> = ({ skill, index }) => {
+  const BurstSkill: React.FC<{ skill: Skill; index: number }> = ({
+    skill,
+    index,
+  }) => {
     const playPop = usePopSound();
     const [{ scale, opacity }, api] = useSpring(() => ({
       scale: 1,
       opacity: 1,
       config: {
         tension: 300,
-        friction: 10
+        friction: 10,
       },
     }));
 
     const handleClick = () => {
       playPop();
-      
+
       api.start({
         to: { scale: 0, opacity: 0 },
       });
 
-      setSkills(prevSkills => {
+      setSkills((prevSkills) => {
         const newSkills = [...prevSkills];
         newSkills[index] = {
           ...newSkills[index],
-          isPopping: true
+          isPopping: true,
         };
         return newSkills;
       });
 
       setTimeout(() => {
-        setSkills(prevSkills => {
+        setSkills((prevSkills) => {
           const newSkills = [...prevSkills];
           newSkills[index] = {
             ...newSkills[index],
-            isVisible: false
+            isVisible: false,
           };
           return newSkills;
         });
@@ -93,8 +103,8 @@ export const SkillCard: React.FC<SkillCardProps> = ({ title, skills: initialSkil
           `}
           style={{
             opacity,
-            transform: to([scale], s => `scale(${s})`),
-            position: 'relative'
+            transform: to([scale], (s) => `scale(${s})`),
+            position: "relative",
           }}
         >
           {skill.text}
@@ -105,23 +115,23 @@ export const SkillCard: React.FC<SkillCardProps> = ({ title, skills: initialSkil
 
   return (
     <div className="p-6 bg-white rounded-lg min-h-[100%] shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 relative">
-      <h3 className="text-xl font-['Poppins'] text-center font-semibold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+      <h3 className="text-2xl font-['Poppins'] text-center font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
         {title}
       </h3>
       <div className="flex flex-wrap gap-1 justify-center">
         {skills.map((skill, index) => (
           <Animation
-            key={`${skill.text}-${index}-${skill.isAnimatingIn ? 'animating' : 'static'}`}
+            key={`${skill.text}-${index}-${
+              skill.isAnimatingIn ? "animating" : "static"
+            }`}
             delay={skill.isAnimatingIn ? delay : 0}
             oneByOne={{
               index,
               totalItems: skills.length,
-              delayBetween: 100
+              delayBetween: 100,
             }}
           >
-            {skill.isVisible && (
-              <BurstSkill skill={skill} index={index} />
-            )}
+            {skill.isVisible && <BurstSkill skill={skill} index={index} />}
           </Animation>
         ))}
       </div>

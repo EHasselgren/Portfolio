@@ -1,18 +1,19 @@
-import React from 'react';
+import React from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import HeaderSection from '../text/HeaderSection';
-import TextSection from '../text/TextSection';
-import { ScrollButton } from '../buttons/ScrollButton';
-import { Animation } from '../shared/Animation';
+import HeaderSection from "../text/HeaderSection";
+import TextSection from "../text/TextSection";
+import { ScrollButton } from "../buttons/ScrollButton";
+import { Animation } from "../shared/Animation";
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface AboutSectionProps {
   onScrollClick: () => void;
 }
 
-const text = "Hi! My name is Elias Hasselgren and I'm a Swedish Fullstack Developer specializing in React and TypeScript. I have worked in several projects and have a lot of experience working in an international environment. I'm passionate about design and customer experiences!";
+const text =
+  "Hi! My name is Elias Hasselgren and I'm a Swedish Fullstack Developer specializing in React and TypeScript. I have worked in several projects and have a lot of experience working in an international environment. I'm passionate about design and customer experiences!";
 
 export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
   ({ onScrollClick }, ref) => {
@@ -49,7 +50,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
             </a>
           </Animation>
           <Animation delay={900} className="flex justify-center w-full">
-          <ScrollButton onScrollClick={onScrollClick} />
+            <ScrollButton onScrollClick={onScrollClick} />
           </Animation>
         </div>
       </section>
