@@ -1,7 +1,7 @@
 import React from "react";
 import { animated, to, useSpring } from "react-spring";
 import { Skill } from "../../types/types";
-import {usePopSound} from "../../hooks/soundHooks";
+import { usePopSound } from "../../hooks/soundHooks";
 
 interface BurstSkillProps {
   skill: Skill;

@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderSection from "../text/HeaderText";
+import { HeaderText } from "../text/HeaderText";
 import ProjectCard from "./ProjectCard";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
@@ -55,7 +55,7 @@ export const ProjectsSection = React.forwardRef<
       <Animation>
         <div className="max-w-6xl flex flex-col items-center px-4">
           <Animation>
-            <HeaderSection title="Projects" />
+            <HeaderText title="Projects" />
           </Animation>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             {projects.map((project, index) => (

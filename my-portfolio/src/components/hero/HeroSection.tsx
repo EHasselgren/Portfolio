@@ -1,6 +1,6 @@
 import React from "react";
-import AnimatedText from "../text/AnimatedText";
-import HeaderText from "../text/HeaderText";
+import AnimatedText from "../hero/AnimatedText";
+import { HeaderText } from "../text/HeaderText";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
 

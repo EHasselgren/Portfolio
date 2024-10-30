@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useScrollAnimation } from "./useScrollAnimation";
+import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 
 interface AnimationProps {
   children: React.ReactNode;

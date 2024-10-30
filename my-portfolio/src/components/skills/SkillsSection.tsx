@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderSection from "../text/HeaderText";
+import { HeaderText } from "../text/HeaderText";
 import { SkillCard } from "./SkillCard";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
@@ -33,7 +33,7 @@ export const SkillsSection = React.forwardRef<
       className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-200 to-white"
     >
       <Animation className="max-w-3xl w-full flex flex-col items-center">
-        <HeaderSection title="Technical Skills" />
+        <HeaderText title="Technical Skills" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
           {Array.from(skillsMap).map(([category, skills], index) => (
             <Animation

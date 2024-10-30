@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderSection from "../text/HeaderText";
+import { HeaderText } from "../text/HeaderText";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
 import AnimatedText from "../text/AnimatedText";
@@ -25,7 +25,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
       >
         <div className="max-w-3xl text-center">
           <Animation delay={0}>
-            <HeaderSection title="About Me" />
+            <HeaderText title="About Me" />
           </Animation>
 
           <Animation delay={300}>

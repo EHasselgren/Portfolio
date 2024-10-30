@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useScrollAnimation } from "../shared/useScrollAnimation";
+import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import { WORD_DELAY } from "../../utils/animationUtils";
 
 interface AnimatedTextProps {
