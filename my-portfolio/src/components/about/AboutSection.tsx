@@ -12,7 +12,7 @@ interface AboutSectionProps {
 }
 
 const text =
-  "Hi! My name is Elias Hasselgren and I'm a Swedish Fullstack Developer specializing in React and TypeScript. I have worked in several projects and have a lot of experience working in an international environment. I'm passionate about design and customer experiences!";
+  "Hi! My name is Elias Hasselgren and I'm a Swedish Fullstack Developer specializing in React and TypeScript. I have worked on several projects and have a lot of experience working in an international environment. I'm passionate about design and customer experience!";
 
 export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
   ({ onScrollClick }, ref) => {
