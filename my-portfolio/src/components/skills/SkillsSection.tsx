@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { HeaderText } from "../text/HeaderText";
 import { SkillCard } from "./SkillCard";
 import { ScrollButton } from "../buttons/ScrollButton";
@@ -27,6 +27,16 @@ export const SkillsSection = React.forwardRef<
   HTMLDivElement,
   SkillsSectionProps
 >(({ onScrollClick }, ref) => {
+  const [showBubble, setShowBubble] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowBubble(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       ref={ref}
@@ -34,7 +44,7 @@ export const SkillsSection = React.forwardRef<
     >
       <Animation className="max-w-3xl w-full flex flex-col items-center">
         <HeaderText title="Technical Skills" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Array.from(skillsMap).map(([category, skills], index) => (
             <Animation
               key={category}
@@ -44,7 +54,13 @@ export const SkillsSection = React.forwardRef<
                 delayBetween: 300,
               }}
             >
-              <SkillCard title={category} skills={skills} delay={800} />
+              <SkillCard
+                title={category}
+                skills={skills}
+                delay={800}
+                showBubble={showBubble && index === skillsMap.size - 1}
+                targetSkillIndex={0}
+              />
             </Animation>
           ))}
         </div>
@@ -55,5 +71,3 @@ export const SkillsSection = React.forwardRef<
     </section>
   );
 });
-
-export default SkillsSection;
