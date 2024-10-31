@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { BurstSkill } from "./BurstSkill";
 import { TalkBubble } from "./TalkBubble";
@@ -10,18 +10,25 @@ interface SkillCardProps {
   delay: number;
   showBubble: boolean;
   targetSkillIndex: number;
+  onComplete: (shouldRegenerate: () => void) => void;
 }
 
-export const SkillCard: React.FC<SkillCardProps> = ({
+interface Skill {
+  text: string;
+  isVisible: boolean;
+}
+
+export const SkillCard = ({
   title,
   skills: initialSkills,
   delay,
   showBubble,
   targetSkillIndex,
-}) => {
-  const [isRegenerating, setIsRegenerating] = useState(false);
+  onComplete,
+}: SkillCardProps) => {
   const [isAnySkillPopped, setIsAnySkillPopped] = useState(false);
-  const [skills, setSkills] = useState(
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [skills, setSkills] = useState<Skill[]>(() =>
     initialSkills.map((skill) => ({
       text: skill,
       isVisible: true,
@@ -31,51 +38,64 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   const { springProps, hoverProps, handleHover, cardAnimationController } =
     useSkillCardAnimation(delay);
 
-  const progress =
-    ((initialSkills.length - skills.filter((s) => s.isVisible).length) /
-      initialSkills.length) *
-    100;
+  // Track whether we've triggered completion
+  const completionTriggered = useRef(false);
 
+  // Memoize progress calculation
+  const progress = useMemo(() => {
+    const visibleCount = skills.filter((s) => s.isVisible).length;
+    return ((initialSkills.length - visibleCount) / initialSkills.length) * 100;
+  }, [skills, initialSkills.length]);
+
+  // Progress bar animation with smoother transitions
   const progressSpring = useSpring({
-    width: `${progress}%`,
+    width: `${isTransitioning ? 0 : progress}%`,
     config: {
-      tension: progress === 0 ? 80 : 140,
-      friction: progress === 0 ? 20 : 16,
-      mass: progress === 0 ? 2 : 1,
-      clamp: progress !== 0,
+      tension: 120,
+      friction: 16,
+      mass: 1,
+      duration: isTransitioning ? 600 : undefined, // Fixed duration for reset animation
+    },
+    onRest: () => {
+      if (isTransitioning) {
+        setIsTransitioning(false);
+        setSkills(initialSkills.map(skill => ({ text: skill, isVisible: true })));
+        setIsAnySkillPopped(false);
+        completionTriggered.current = false;
+      }
     },
   });
 
-  useEffect(() => {
-    const visibleSkills = skills.filter((skill) => skill.isVisible);
-    if (visibleSkills.length === 0) {
-      setIsRegenerating(true);
-      cardAnimationController.start({
-        from: { scale: 0.8, opacity: 0 },
-        to: { scale: 1, opacity: 1 },
-      });
+  const regenerateSkills = useCallback(() => {
+    setIsTransitioning(true);
+    cardAnimationController.start({
+      from: { scale: 0.8, opacity: 0 },
+      to: { scale: 1, opacity: 1 },
+    });
+  }, [cardAnimationController]);
 
-      setTimeout(() => {
-        setSkills(
-          initialSkills.map((skill) => ({
-            text: skill,
-            isVisible: true,
-          }))
-        );
-        setIsRegenerating(false);
-        setIsAnySkillPopped(false);
-      }, 1000);
-    }
-  }, [skills, initialSkills, cardAnimationController]);
-
-  const handlePop = (index: number) => {
+  const handlePop = useCallback((index: number) => {
     setIsAnySkillPopped(true);
     setSkills((prev) =>
       prev.map((skill, i) =>
         i === index ? { ...skill, isVisible: false } : skill
       )
     );
-  };
+  }, []);
+
+  // Check for completion
+  useEffect(() => {
+    if (completionTriggered.current) return;
+
+    const visibleSkillCount = skills.filter((skill) => skill.isVisible).length;
+    if (visibleSkillCount === 0) {
+      completionTriggered.current = true;
+      // Wait for the last pop animation to complete
+      setTimeout(() => {
+        onComplete(regenerateSkills);
+      }, 400);
+    }
+  }, [skills, onComplete, regenerateSkills]);
 
   return (
     <animated.div
@@ -85,20 +105,26 @@ export const SkillCard: React.FC<SkillCardProps> = ({
       }}
       onMouseEnter={() => handleHover(true)}
       onMouseLeave={() => handleHover(false)}
-      className="p-4 bg-white rounded-lg min-h-[100%] shadow-md hover:shadow-xl transition-110 duration-300 border border-slate-100 relative group flex flex-col"
+      className="p-4 bg-white rounded-lg min-h-[100%] shadow-md hover:shadow-xl 
+                 transition-all duration-300 border border-slate-100 relative 
+                 group flex flex-col"
     >
-      <h3 className="text-2xl font-['Poppins'] text-center font-bold mb-2 bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
+      <h3 className="text-2xl font-['Poppins'] text-center font-bold mb-2 
+                     bg-gradient-to-r from-purple-500 to-blue-400 
+                     bg-clip-text text-transparent drop-shadow-lg">
         {title}
       </h3>
 
       <div className="flex-1 flex flex-wrap gap-1 justify-center mb-4">
-        {!isRegenerating &&
-          skills.map((skill, index) => (
+        {skills.map((skill, index) => (
+          skill.isVisible && (
             <div key={index} className="relative">
-              {skill.isVisible && (
-                <BurstSkill skill={skill} index={index} onPop={handlePop} />
-              )}
-              {showBubble && index === targetSkillIndex && skill.isVisible && (
+              <BurstSkill
+                text={skill.text}
+                index={index}
+                onPop={handlePop}
+              />
+              {showBubble && index === targetSkillIndex && (
                 <TalkBubble
                   initialDelay={2000}
                   showDuration={3000}
@@ -107,8 +133,10 @@ export const SkillCard: React.FC<SkillCardProps> = ({
                 />
               )}
             </div>
-          ))}
+          )
+        ))}
       </div>
+
       <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden mt-auto">
         <animated.div
           className="h-full bg-gradient-to-r from-purple-500 to-blue-400"
