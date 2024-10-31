@@ -10,9 +10,9 @@ interface TalkBubbleProps {
 }
 
 export const TalkBubble = memo(({
-  initialDelay = 2000,
+  initialDelay = 3000,
   showDuration = 3000,
-  hideDuration = 2000,
+  hideDuration = 5000,
   isSkillPopped = false,
 }: TalkBubbleProps) => {
   const [isVisible, setIsVisible] = useState(false);

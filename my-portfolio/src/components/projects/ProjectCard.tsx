@@ -33,8 +33,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const descDelay = cardDelay + stepDelay * 3;
   const techDelay = cardDelay + stepDelay * 4;
 
+  const handleGithubButtonClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.open(githubUrl, '_blank', 'noopener noreferrer');
+  };
+
   return (
-    <div className="group p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform">
+    <a
+      href={githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block group p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:scale-105 transform cursor-pointer"
+    >
       <Animation delay={imageDelay}>
         <div className="relative h-40 mb-3 overflow-hidden rounded-lg">
           <LazyLoadImage
@@ -75,16 +85,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       <div className="flex justify-center scale-0 group-hover:scale-100 transition-all duration-300 origin-center">
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={handleGithubButtonClick}
           className="animate-pulse w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-400 to-cyan-600 hover:from-purple-500 hover:to-cyan-700 text-white shadow-md hover:shadow-lg"
         >
           <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
-        </a>
+        </button>
       </div>
-    </div>
+    </a>
   );
 };
 
