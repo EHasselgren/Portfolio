@@ -29,16 +29,12 @@ const SKILLS_MAP: SkillsMapType = new Map([
   ],
 ]);
 
-export const SkillsSection = memo(forwardRef<HTMLDivElement, SkillsSectionProps>(
-  ({ onScrollClick }, ref) => {
+export const SkillsSection = memo(
+  forwardRef<HTMLDivElement, SkillsSectionProps>(({ onScrollClick }, ref) => {
     const [showBubble, setShowBubble] = useState(false);
     const [showBanner, setShowBanner] = useState(false);
     const [bannerMessage, setBannerMessage] = useState("");
-    const [regenerateCallback, setRegenerateCallback] = useState<
-      (() => void) | null
-    >(null);
 
-    // Initialize bubble visibility after delay
     useState(() => {
       const timer = setTimeout(() => {
         setShowBubble(true);
@@ -54,23 +50,19 @@ export const SkillsSection = memo(forwardRef<HTMLDivElement, SkillsSectionProps>
     const handleCardComplete = useCallback((regenerate: () => void) => {
       setBannerMessage(getRandomMessage());
       setShowBanner(true);
-      setRegenerateCallback(() => regenerate);
+      regenerate();
     }, [getRandomMessage]);
 
     const handleBannerComplete = useCallback(() => {
       setShowBanner(false);
-      if (regenerateCallback) {
-        regenerateCallback();
-        setRegenerateCallback(null);
-      }
-    }, [regenerateCallback]);
+    }, []);
 
     return (
       <>
         <section
           ref={ref}
           className="min-h-screen flex items-center justify-center 
-                     bg-gradient-to-b from-blue-200 to-white"
+                    bg-gradient-to-b from-blue-200 to-white"
         >
           <Animation className="max-w-3xl w-full flex flex-col items-center">
             <HeaderText title="Technical Skills" />
@@ -110,8 +102,8 @@ export const SkillsSection = memo(forwardRef<HTMLDivElement, SkillsSectionProps>
         />
       </>
     );
-  }
-));
+  })
+);
 
 SkillsSection.displayName = 'SkillsSection';
 
