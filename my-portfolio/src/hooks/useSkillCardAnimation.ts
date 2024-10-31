@@ -1,7 +1,7 @@
 import { useSpring } from "react-spring";
 
 export const useSkillCardAnimation = (delay?: number) => {
-  const [springProps, api] = useSpring(() => ({
+  const [springProps, cardAnimationController] = useSpring(() => ({
     from: { scale: 0.8, opacity: 0 },
     to: { scale: 1, opacity: 1 },
     config: {
@@ -11,7 +11,7 @@ export const useSkillCardAnimation = (delay?: number) => {
     delay,
   }));
 
-  const [hoverProps, hoverApi] = useSpring(() => ({
+  const [hoverProps, hoverAnimationController] = useSpring(() => ({
     scale: 1,
     config: {
       tension: 300,
@@ -20,10 +20,15 @@ export const useSkillCardAnimation = (delay?: number) => {
   }));
 
   const handleHover = (isHovered: boolean) => {
-    hoverApi.start({
+    hoverAnimationController.start({
       scale: isHovered ? 1.05 : 1,
     });
   };
 
-  return { springProps, hoverProps, handleHover, api };
+  return { 
+    springProps, 
+    hoverProps, 
+    handleHover, 
+    cardAnimationController 
+  };
 };

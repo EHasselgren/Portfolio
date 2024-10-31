@@ -20,7 +20,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   );
 
   const [isRegenerating, setIsRegenerating] = useState(false);
-  const { springProps, hoverProps, handleHover, api } = useSkillCardAnimation(delay);
+  const { springProps, hoverProps, handleHover, cardAnimationController  } = useSkillCardAnimation(delay);
 
   const progress = ((initialSkills.length - skills.filter(s => s.isVisible).length) / initialSkills.length) * 100;
 
@@ -38,7 +38,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
     const visibleSkills = skills.filter((skill) => skill.isVisible);
     if (visibleSkills.length === 0) {
       setIsRegenerating(true);
-      api.start({
+      cardAnimationController .start({
         from: { scale: 0.8, opacity: 0 },
         to: { scale: 1, opacity: 1 },
       });
@@ -55,7 +55,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
         setIsRegenerating(false);
       }, 1000);
     }
-  }, [skills, initialSkills, api]);
+  }, [skills, initialSkills, cardAnimationController ]);
 
   const handlePop = (index: number) => {
     setSkills(prevSkills => prevSkills.map((skill, i) => 

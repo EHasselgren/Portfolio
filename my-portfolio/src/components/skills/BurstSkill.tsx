@@ -15,7 +15,7 @@ export const BurstSkill: React.FC<BurstSkillProps> = ({
   onPop,
 }) => {
   const playPop = usePopSound();
-  const [{ scale, opacity }, burstApi] = useSpring(() => ({
+  const [{ scale, opacity }, animationController] = useSpring(() => ({
     scale: 1,
     opacity: 1,
     config: {
@@ -26,7 +26,7 @@ export const BurstSkill: React.FC<BurstSkillProps> = ({
 
   const handleClick = () => {
     playPop();
-    burstApi.start({
+    animationController.start({
       to: { scale: 0, opacity: 0 },
     });
     onPop(index);

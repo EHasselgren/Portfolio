@@ -57,7 +57,7 @@ export const ProjectsSection = React.forwardRef<
           <Animation>
             <HeaderText title="Projects" />
           </Animation>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {projects.map((project, index) => (
               <Animation
                 key={index}

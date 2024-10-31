@@ -42,7 +42,7 @@ export const ScrollButton: React.FC<ScrollButtonProps> = ({
   return (
     <button
       onClick={handleClick}
-      className="animate-bounce w-12 h-12 rounded-full mt-8 bg-gradient-to-br from-purple-400 to-cyan-600 text-white shadow-md hover:shadow-lg transition-shadow duration-300 flex items-center justify-center"
+            className=" w-10 h-10 flex items-center mt-10 animate-bounce justify-center rounded-full bg-gradient-to-br from-purple-400 to-cyan-600 hover:from-purple-500 hover:to-cyan-700 text-white transition-all duration-200 focus:outline-none  shadow-md hover:shadow-lg"
       aria-label={`Scroll ${direction}`}
     >
       <FontAwesomeIcon

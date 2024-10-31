@@ -34,7 +34,7 @@ export const SkillsSection = React.forwardRef<
     >
       <Animation className="max-w-3xl w-full flex flex-col items-center">
         <HeaderText title="Technical Skills" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
           {Array.from(skillsMap).map(([category, skills], index) => (
             <Animation
               key={category}
