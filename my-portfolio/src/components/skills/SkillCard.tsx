@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { BurstSkill } from "./BurstSkill";
 import { TalkBubble } from "./TalkBubble";
@@ -35,11 +35,10 @@ export const SkillCard = ({
       isVisible: true,
     }))
   );
+  const [cycleCount, setCycleCount] = useState(0);
 
   const { springProps, hoverProps, handleHover, cardAnimationController } =
     useSkillCardAnimation(delay);
-
-  const completionTriggered = useRef(false);
 
   const progress = useMemo(() => {
     const visibleCount = skills.filter((s) => s.isVisible).length;
@@ -49,9 +48,10 @@ export const SkillCard = ({
   const progressSpring = useSpring({
     width: `${isTransitioning ? 0 : progress}%`,
     config: {
-      tension: 120,
-      friction: 16,
-      mass: 1,
+      tension: 140,
+      friction: 24,
+      clamp: true,
+      mass: 0.8,
       duration: isTransitioning ? 600 : undefined,
     },
   });
@@ -62,31 +62,34 @@ export const SkillCard = ({
       from: { scale: 0.8, opacity: 0 },
       to: { scale: 1, opacity: 1 },
     });
-    setSkills(initialSkills.map((skill) => ({ text: skill, isVisible: true })));
-    setIsAnySkillPopped(false);
-    completionTriggered.current = false;
+    
+    // Wait for the card animation before starting skill regeneration
+    setTimeout(() => {
+      setIsTransitioning(false);
+      setSkills(initialSkills.map((skill) => ({ text: skill, isVisible: true })));
+      setIsAnySkillPopped(false);
+      setCycleCount(prev => prev + 1);
+    }, 600);
   }, [cardAnimationController, initialSkills]);
 
   const handlePop = useCallback((index: number) => {
+    if (isTransitioning) return;
     setIsAnySkillPopped(true);
     setSkills((prev) =>
       prev.map((skill, i) =>
         i === index ? { ...skill, isVisible: false } : skill
       )
     );
-  }, []);
+  }, [isTransitioning]);
 
   useEffect(() => {
-    if (completionTriggered.current) return;
-
     const visibleSkillCount = skills.filter((skill) => skill.isVisible).length;
-    if (visibleSkillCount === 0) {
-      completionTriggered.current = true;
+    if (visibleSkillCount === 0 && !isTransitioning) {
       setTimeout(() => {
         onComplete(regenerateSkills);
       }, 400);
     }
-  }, [skills, onComplete, regenerateSkills]);
+  }, [skills, onComplete, regenerateSkills, isTransitioning]);
 
   return (
     <animated.div
@@ -103,7 +106,7 @@ export const SkillCard = ({
       <Animation delay={delay + 200}>
         <h3
           className="text-2xl font-['Poppins'] text-center font-bold mb-2 
-                     bg-gradient-to-r from-purple-500 to-blue-400 
+                     bg-gradient-to-r from-blue-600 to-cyan-600 
                      bg-clip-text text-transparent drop-shadow-lg"
         >
           {title}
@@ -115,11 +118,11 @@ export const SkillCard = ({
           (skill, skillIndex) =>
             skill.isVisible && (
               <Animation
-                key={skillIndex}
+                key={`${skillIndex}-${cycleCount}`}
                 oneByOne={{
                   index: skillIndex,
                   totalItems: skills.length,
-                  delayBetween: 100,
+                  delayBetween: 100
                 }}
                 delay={delay + 400}
               >
