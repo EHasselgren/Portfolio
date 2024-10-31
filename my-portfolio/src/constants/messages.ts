@@ -1,9 +1,7 @@
 export const BUBBLE_MESSAGES = [
   "Pop me!",
   "Click me!",
-  "Try me!",
-  "Burst me!",
-  "Over here!",
+  "Click here!",
   "Choose me!",
   "Hey there!",
   "Ready to pop!",

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { BurstSkill } from "./BurstSkill";
 import { TalkBubble } from "./TalkBubble";
-import { BUBBLE_MESSAGES } from "../../constants/messages";
 import { useSkillCardAnimation } from "../../hooks/useSkillCardAnimation";
 
 interface SkillCardProps {
@@ -21,6 +20,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   targetSkillIndex,
 }) => {
   const [isRegenerating, setIsRegenerating] = useState(false);
+  const [isAnySkillPopped, setIsAnySkillPopped] = useState(false);
   const [skills, setSkills] = useState(
     initialSkills.map((skill) => ({
       text: skill,
@@ -63,11 +63,13 @@ export const SkillCard: React.FC<SkillCardProps> = ({
           }))
         );
         setIsRegenerating(false);
+        setIsAnySkillPopped(false);
       }, 1000);
     }
   }, [skills, initialSkills, cardAnimationController]);
 
   const handlePop = (index: number) => {
+    setIsAnySkillPopped(true);
     setSkills((prev) =>
       prev.map((skill, i) =>
         i === index ? { ...skill, isVisible: false } : skill
@@ -97,7 +99,12 @@ export const SkillCard: React.FC<SkillCardProps> = ({
                 <BurstSkill skill={skill} index={index} onPop={handlePop} />
               )}
               {showBubble && index === targetSkillIndex && skill.isVisible && (
-                <TalkBubble message={BUBBLE_MESSAGES[0]} />
+                <TalkBubble
+                  initialDelay={2000}
+                  showDuration={3000}
+                  hideDuration={2000}
+                  isSkillPopped={isAnySkillPopped}
+                />
               )}
             </div>
           ))}
