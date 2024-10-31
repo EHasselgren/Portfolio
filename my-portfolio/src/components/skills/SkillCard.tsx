@@ -63,7 +63,6 @@ export const SkillCard = ({
       to: { scale: 1, opacity: 1 },
     });
     
-    // Wait for the card animation before starting skill regeneration
     setTimeout(() => {
       setIsTransitioning(false);
       setSkills(initialSkills.map((skill) => ({ text: skill, isVisible: true })));
@@ -90,6 +89,11 @@ export const SkillCard = ({
       }, 400);
     }
   }, [skills, onComplete, regenerateSkills, isTransitioning]);
+
+  // Calculate individual delays for each skill
+  const getSkillDelay = (index: number) => {
+    return delay + 400 + (index * 50); // Reduced delay between skills to 50ms
+  };
 
   return (
     <animated.div
@@ -119,12 +123,7 @@ export const SkillCard = ({
             skill.isVisible && (
               <Animation
                 key={`${skillIndex}-${cycleCount}`}
-                oneByOne={{
-                  index: skillIndex,
-                  totalItems: skills.length,
-                  delayBetween: 100
-                }}
-                delay={delay + 400}
+                delay={getSkillDelay(skillIndex)}
               >
                 <div className="relative">
                   <BurstSkill
