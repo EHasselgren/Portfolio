@@ -25,8 +25,10 @@ export const ContactSection = React.forwardRef<
           <HeaderText title="Get in Touch!" />
         </Animation>
         <Animation delay={300}>
-          <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl mb-4 font-['Poppins']">
-            <AnimatedText text={text} />
+          <div className="px-4 md:px-2 lg:px-0">
+            <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-base sm:text-lg lg:text-xl mb-4 font-['Poppins']">
+              <AnimatedText text={text} />
+            </div>
           </div>
         </Animation>
         <Animation delay={600}>
