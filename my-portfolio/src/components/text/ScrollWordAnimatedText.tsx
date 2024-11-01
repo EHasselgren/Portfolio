@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import { WORD_DELAY } from "../../utils/animationUtils";
 
-interface AnimatedTextProps {
+interface ScrollWordAnimatedTextProps {
   text: string;
   delay?: number;
   onAnimationComplete?: () => void;
 }
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({
+const ScrollWordAnimatedText: React.FC<ScrollWordAnimatedTextProps> = ({
   text,
   delay = 0,
   onAnimationComplete,
@@ -61,4 +61,4 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   );
 };
 
-export default AnimatedText;
+export default ScrollWordAnimatedText;

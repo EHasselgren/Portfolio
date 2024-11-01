@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
-import { AnimatedLetter } from "../hero/AnimatedLetter";
-import { AnimatedTextContainer } from "../hero/AnimatedTextContainer";
+import { AnimatedLetter } from "./AnimatedLetter";
+import { AnimatedTextContainer } from "./AnimatedTextContainer";
 import { useAnimationState } from "../../hooks/useAnimationState";
 
 interface HeaderTextProps {

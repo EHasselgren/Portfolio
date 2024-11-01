@@ -2,7 +2,7 @@ import React from "react";
 import { HeaderText } from "../text/HeaderText";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
-import AnimatedText from "../text/AnimatedText";
+import AnimatedText from "../text/ScrollWordAnimatedText";
 import { ProfileImage } from "./ProfileImage";
 import { calculateAnimationDuration } from "../../utils/animationUtils";
 import { CvButton } from "./CvButton";

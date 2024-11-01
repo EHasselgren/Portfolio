@@ -4,7 +4,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { Animation } from "../shared/Animation";
-import AnimatedText from "../text/AnimatedText";
+import AnimatedText from "../text/ScrollWordAnimatedText";
 
 interface ProjectCardProps {
   title: string;

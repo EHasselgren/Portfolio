@@ -1,5 +1,5 @@
 import React from "react";
-import AnimatedText from "../hero/AnimatedText";
+import LetterAnimatedText from "../text/LetterAnimatedText";
 import { HeaderText } from "../text/HeaderText";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
@@ -27,7 +27,7 @@ export const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           </Animation>
           <Animation delay={300}>
             <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl font-['Poppins']">
-              <AnimatedText text={text} />
+              <LetterAnimatedText text={text} />
             </div>
           </Animation>
           <Animation delay={600}>

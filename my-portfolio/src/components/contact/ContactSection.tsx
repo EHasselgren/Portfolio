@@ -1,6 +1,6 @@
 import React from "react";
 import { HeaderText } from "../text/HeaderText";
-import AnimatedText from "../text/AnimatedText";
+import AnimatedText from "../text/ScrollWordAnimatedText";
 import { Animation } from "../shared/Animation";
 import SocialLinks from "./SocialLinks";
 

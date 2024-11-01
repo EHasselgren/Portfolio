@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-interface AnimatedTextProps {
+interface LetterAnimatedTextProps {
   text: string;
 }
 
-const AnimatedText: FC<AnimatedTextProps> = ({ text }) => {
+const LetterAnimatedText: FC<LetterAnimatedTextProps> = ({ text }) => {
   const letters = text.split("");
 
   return (
@@ -24,4 +24,4 @@ const AnimatedText: FC<AnimatedTextProps> = ({ text }) => {
   );
 };
 
-export default AnimatedText;
+export default LetterAnimatedText;
