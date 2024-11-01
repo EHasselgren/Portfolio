@@ -62,24 +62,29 @@ export const SkillCard = ({
       from: { scale: 0.8, opacity: 0 },
       to: { scale: 1, opacity: 1 },
     });
-    
+
     setTimeout(() => {
       setIsTransitioning(false);
-      setSkills(initialSkills.map((skill) => ({ text: skill, isVisible: true })));
+      setSkills(
+        initialSkills.map((skill) => ({ text: skill, isVisible: true }))
+      );
       setIsAnySkillPopped(false);
-      setCycleCount(prev => prev + 1);
+      setCycleCount((prev) => prev + 1);
     }, 600);
   }, [cardAnimationController, initialSkills]);
 
-  const handlePop = useCallback((index: number) => {
-    if (isTransitioning) return;
-    setIsAnySkillPopped(true);
-    setSkills((prev) =>
-      prev.map((skill, i) =>
-        i === index ? { ...skill, isVisible: false } : skill
-      )
-    );
-  }, [isTransitioning]);
+  const handlePop = useCallback(
+    (index: number) => {
+      if (isTransitioning) return;
+      setIsAnySkillPopped(true);
+      setSkills((prev) =>
+        prev.map((skill, i) =>
+          i === index ? { ...skill, isVisible: false } : skill
+        )
+      );
+    },
+    [isTransitioning]
+  );
 
   useEffect(() => {
     const visibleSkillCount = skills.filter((skill) => skill.isVisible).length;
@@ -92,7 +97,7 @@ export const SkillCard = ({
 
   // Calculate individual delays for each skill
   const getSkillDelay = (index: number) => {
-    return delay + 400 + (index * 50); // Reduced delay between skills to 50ms
+    return delay + 400 + index * 50;
   };
 
   return (
@@ -109,14 +114,14 @@ export const SkillCard = ({
     >
       <Animation delay={delay + 200}>
         <h3
-          className="text-2xl font-['Poppins'] text-center font-bold mb-2 
-                     bg-gradient-to-r from-blue-600 to-cyan-600 
-                     bg-clip-text text-transparent drop-shadow-lg"
+          className="text-lg sm:text-xl md:text-2xl
+                 font-['Poppins'] text-center font-bold mb-2
+                 bg-gradient-to-r from-blue-600 to-cyan-600
+                 bg-clip-text text-transparent drop-shadow-lg"
         >
           {title}
         </h3>
       </Animation>
-
       <div className="flex-1 flex flex-wrap gap-1 justify-center mb-4">
         {skills.map(
           (skill, skillIndex) =>

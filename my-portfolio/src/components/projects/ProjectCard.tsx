@@ -57,8 +57,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </Animation>
 
       <Animation delay={titleDelay}>
-        <h3 className="text-lg font-['Poppins'] text-center font-semibold mb-1 bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
-          {title}
+      <h3
+      className="text-lg sm:text-xl md:text-2xl
+                 font-['Poppins'] text-center font-bold mb-2
+                 bg-gradient-to-r from-blue-600 to-cyan-600
+                 bg-clip-text text-transparent drop-shadow-lg"
+    >
+      {title}
         </h3>
       </Animation>
 
