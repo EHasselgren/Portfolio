@@ -3,6 +3,10 @@ import { HeaderText } from "../text/HeaderText";
 import ProjectCard from "./ProjectCard";
 import { ScrollButton } from "../buttons/ScrollButton";
 import { Animation } from "../shared/Animation";
+import MunamiiCakery from "../../assets/images/munamii-cakery.png";
+import Moneytracker from "../../assets/images/Moneytracker.png";
+import Api from "../../assets/images/Api.png";
+import AssetTracker from "../../assets/images/asset-tracker.png";
 
 interface ProjectsSectionProps {
   onScrollClick: () => void;
@@ -19,7 +23,7 @@ export const ProjectsSection = React.forwardRef<
         "React-based frontend for a bakery business, featuring product showcase and ordering system",
       technologies: ["TypeScript", "React", "Tailwind CSS"],
       githubUrl: "https://github.com/EHasselgren/munamii-cakery",
-      imageUrl: "/images/munamii-cakery.png",
+      imageUrl: MunamiiCakery,
     },
     {
       title: "Money Tracker",
@@ -27,7 +31,7 @@ export const ProjectsSection = React.forwardRef<
         "Terminal-based application for tracking personal finances, has advanced filtering and is styled using spectre.console",
       technologies: ["C#", ".NET", "spectre.console"],
       githubUrl: "https://github.com/EHasselgren/MoneyTracker",
-      imageUrl: "/images/Moneytracker.png",
+      imageUrl: Moneytracker,
     },
     {
       title: "Munamii Cakery API",
@@ -35,7 +39,7 @@ export const ProjectsSection = React.forwardRef<
         "Backend API service for a bakery business, handling product management and orders",
       technologies: ["JavaScript", "Express", "MongoDB", "Node.js"],
       githubUrl: "https://github.com/EHasselgren/munamii-cakery-api",
-      imageUrl: "/images/api.png",
+      imageUrl: Api,
     },
     {
       title: "Asset Tracker",
@@ -43,7 +47,7 @@ export const ProjectsSection = React.forwardRef<
         "Console application for managing assets, converts prices into local currency using https://www.exchangerate-api.com/",
       technologies: ["C#", ".NET"],
       githubUrl: "https://github.com/EHasselgren/AssetTracker",
-      imageUrl: "/images/asset-tracker.png",
+      imageUrl: AssetTracker,
     },
   ];
 

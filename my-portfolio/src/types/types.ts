@@ -10,3 +10,4 @@ export interface SkillCardProps {
   skills: string[];
   delay?: number;
 }
+

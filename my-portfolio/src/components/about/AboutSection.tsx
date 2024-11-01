@@ -29,7 +29,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
           </Animation>
 
           <Animation delay={300}>
-            <ProfileImage src="/images/profile.png" alt="Elias Hasselgren" />
+            <ProfileImage alt="Elias Hasselgren" />
           </Animation>
 
           <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl mb-4 font-['Poppins']">
