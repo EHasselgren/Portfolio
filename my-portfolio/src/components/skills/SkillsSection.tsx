@@ -13,7 +13,6 @@ interface SkillsSectionProps {
 type SkillCategory = "Frontend" | "Backend" | "Other";
 type SkillsMapType = Map<SkillCategory, string[]>;
 
-// Define skills map as a constant outside component with proper typing
 const SKILLS_MAP: SkillsMapType = new Map([
   [
     "Frontend",
@@ -62,12 +61,12 @@ export const SkillsSection = memo(
         <section
           ref={ref}
           className="min-h-screen flex items-center justify-center 
-                    bg-gradient-to-b from-blue-200 to-white"
+                     bg-gradient-to-b from-blue-200 to-white"
         >
-          <Animation className="max-w-3xl w-full flex flex-col items-center">
+          <Animation className="w-full flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-0">
             <HeaderText title="Technical Skills" />
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex flex-col lg:flex-row gap-6 items-center lg:items-stretch">
               {Array.from(SKILLS_MAP).map(([category, skills], index) => (
                 <Animation
                   key={category}
@@ -76,6 +75,7 @@ export const SkillsSection = memo(
                     totalItems: SKILLS_MAP.size,
                     delayBetween: 300,
                   }}
+                  className="w-[16rem]"
                 >
                   <SkillCard
                     title={category}
