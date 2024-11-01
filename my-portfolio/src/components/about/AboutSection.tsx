@@ -23,7 +23,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
         ref={ref}
         className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-blue-200"
       >
-        <div className="max-w-3xl text-center">
+        <div className="max-w-3xl text-center px-6 md:px-4">
           <Animation delay={0}>
             <HeaderText title="About Me" />
           </Animation>
@@ -32,7 +32,7 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
             <ProfileImage alt="Elias Hasselgren" />
           </Animation>
 
-          <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl mb-4 font-['Poppins']">
+          <div className="bg-gradient-to-r from-slate-700 to-blue-700 text-transparent bg-clip-text text-xl mb-4 font-['Poppins'] text-left md:text-center">
             <AnimatedText text={text} />
           </div>
 

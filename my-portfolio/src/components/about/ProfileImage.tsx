@@ -9,11 +9,12 @@ interface ProfileImageProps {
 
 export const ProfileImage: React.FC<ProfileImageProps> = ({ alt }) => {
   return (
-    <div className="my-8">
+    <div className="my-8 flex justify-center">
       <LazyLoadImage
         src={profile}
         alt={alt}
-        className="w-[15vw] h-[15vw] rounded-full object-cover mx-auto shadow-xl transition-all duration-100 hover:shadow-2xl"
+        className="w-48 h-48 md:w-[15vw] md:h-[15vw] rounded-full object-cover shadow-xl transition-all duration-100 hover:shadow-2xl"
+        effect="blur"
       />
     </div>
   );
