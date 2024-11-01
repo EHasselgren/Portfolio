@@ -1,13 +1,16 @@
 import React from 'react';
 import { animated, useSpring } from '@react-spring/web';
+import { usePopSound } from '../../hooks/soundHooks';
 
 interface BurstSkillProps {
-  text: string; 
+  text: string;
   index: number;
   onPop: (index: number) => void;
 }
 
 export const BurstSkill: React.FC<BurstSkillProps> = ({ text, index, onPop }) => {
+  const playPop = usePopSound();
+  
   const [springs, api] = useSpring(() => ({
     opacity: 1,
     scale: 1,
@@ -18,6 +21,7 @@ export const BurstSkill: React.FC<BurstSkillProps> = ({ text, index, onPop }) =>
   }));
 
   const handleClick = () => {
+    playPop();
     api.start({
       to: { opacity: 0, scale: 0 },
     });
@@ -29,8 +33,8 @@ export const BurstSkill: React.FC<BurstSkillProps> = ({ text, index, onPop }) =>
       <animated.span
         onClick={handleClick}
         className="px-3 py-1 bg-gradient-to-br from-purple-400 to-blue-500 
-                  text-white rounded-full text-sm flex items-center justify-center 
-                  min-w-[48px] cursor-pointer hover:scale-110 transition-transform"
+                 text-white rounded-full text-sm flex items-center justify-center
+                 min-w-[48px] cursor-pointer hover:scale-110 transition-transform"
         style={springs}
       >
         {text}
