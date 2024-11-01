@@ -4,7 +4,6 @@ import { AboutSection } from "./about/AboutSection";
 import { SkillsSection } from "./skills/SkillsSection";
 import { ProjectsSection } from "./projects/ProjectsSection";
 import { ContactSection } from "./contact/ContactSection";
-import { BottomSection } from "./bottom/BottomSection";
 
 const Portfolio = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -29,8 +28,10 @@ const Portfolio = () => {
         ref={projectsRef}
         onScrollClick={() => scrollTo(contactRef)}
       />
-      <ContactSection ref={contactRef} />
-      <BottomSection onScrollToHero={() => scrollTo(heroRef)} />
+      <ContactSection
+        onScrollToHero={() => scrollTo(heroRef)}
+        ref={contactRef}
+      />
     </div>
   );
 };
