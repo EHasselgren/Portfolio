@@ -17,7 +17,7 @@ const text =
 export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
   ({ onScrollClick }, ref) => {
     const TOTAL_TEXT_DURATION = calculateAnimationDuration(text);
-
+    
     return (
       <section
         ref={ref}
@@ -36,16 +36,30 @@ export const AboutSection = React.forwardRef<HTMLDivElement, AboutSectionProps>(
             <AnimatedText text={text} />
           </div>
 
-          <Animation
+          <Animation 
             delay={TOTAL_TEXT_DURATION - 800}
-            className="flex justify-center"
+            className="hidden md:flex justify-center"
           >
             <CvButton />
           </Animation>
 
-          <Animation
+          <Animation 
+            delay={300}
+            className="flex md:hidden justify-center"
+          >
+            <CvButton />
+          </Animation>
+
+          <Animation 
             delay={TOTAL_TEXT_DURATION - 400}
-            className="flex justify-center"
+            className="hidden md:flex justify-center"
+          >
+            <ScrollButton onScrollClick={onScrollClick} />
+          </Animation>
+
+          <Animation 
+            delay={400}
+            className="flex md:hidden justify-center"
           >
             <ScrollButton onScrollClick={onScrollClick} />
           </Animation>
