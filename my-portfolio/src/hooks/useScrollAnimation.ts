@@ -1,4 +1,3 @@
-// useScrollAnimation.ts
 import { useRef, useState, useEffect } from "react";
 
 export const useScrollAnimation = () => {
