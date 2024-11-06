@@ -26,6 +26,7 @@ export const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionP
           "React-based frontend for a bakery business, featuring product showcase and ordering system",
         technologies: ["TypeScript", "React", "Tailwind CSS"],
         githubUrl: "https://github.com/EHasselgren/munamii-cakery",
+        websiteUrl: "https://ehasselgren.github.io/munamii-cakery/",
         imageUrl: MunamiiCakery,
       },
       {

@@ -12,6 +12,7 @@ interface ProjectCardProps {
   technologies: string[];
   imageUrl: string;
   githubUrl: string;
+  websiteUrl?: string; 
   index: number;
   shouldAnimate?: boolean;
 }
@@ -22,6 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   technologies,
   imageUrl,
   githubUrl,
+  websiteUrl,
   index,
   shouldAnimate = false,
 }) => {
@@ -35,6 +37,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const handleGithubButtonClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     window.open(githubUrl, '_blank', 'noopener noreferrer');
+  };
+
+  const handleCardClick = () => {
+    const url = websiteUrl || githubUrl;
+    window.open(url, '_blank', 'noopener noreferrer');
   };
 
   const Content = () => (
@@ -81,10 +88,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 
   return (
-    <a
-      href={githubUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
+      onClick={handleCardClick}
       className="block group p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 lg:hover:scale-105 transform cursor-pointer"
     >
       {shouldAnimate ? (
@@ -139,7 +144,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       ) : (
         <Content />
       )}
-    </a>
+    </div>
   );
 };
 
